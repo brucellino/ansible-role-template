@@ -19,7 +19,7 @@ jobs:
           node-version: 'lts/*'
       - name: add semantic release plugins
         run: |
-          run: npm install -D '@semantic-release/changelog'
+          npm install -D '@semantic-release/changelog'
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
