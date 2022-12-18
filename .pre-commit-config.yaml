@@ -12,7 +12,7 @@ repos:
     rev: v6.8.2
     hooks:
     - id: ansible-lint
-      always_run: false
+      always_run: true
       exclude_types:
         - markdown
         - javascript
