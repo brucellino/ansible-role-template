@@ -3,4 +3,4 @@
   hosts: localhost
   connection: local
   roles:
-  - ansible-role-template
+    - ansible-role-template
