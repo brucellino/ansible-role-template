@@ -21,7 +21,7 @@ jobs:
         with:
           path: test/playbook.yml
         env:
-          ANSIBLE_ROLES_PATH: "${env.GITHUB_WORKSPACE}"
+          ANSIBLE_ROLES_PATH: "${{ env.GITHUB_WORKSPACE }}"
   release:
     name: Release
     runs-on: ubuntu-latest
