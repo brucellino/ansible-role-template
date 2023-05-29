@@ -8,7 +8,7 @@ updates:
     reviewers:
       - "brucellino"
   - package-ecosystem: github-actions
-    directory: ".github/workflows"
+    directory: "/"
     schedule:
       interval: "weekly"
     reviewers:
