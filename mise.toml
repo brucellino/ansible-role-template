@@ -3,7 +3,7 @@ _.python.venv = { path = ".venv", create = true }
 
 [tools]
 python = "3.14.2"
-uv = "0.12.5"
+uv = "0.12.23"
 node = "24"
 
 [tasks]
