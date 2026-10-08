@@ -16,10 +16,8 @@ jobs:
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
-          path: brucellino.template
       - uses: jdx/mise-action@v5
         with:
-          version: 2026.10.3 # [default: latest] mise version to install
           install: true # [default: true] run `mise install`
           cache: true # [default: true] cache mise using GitHub's cache
           experimental: true # [default: false] enable experimental features
@@ -45,7 +43,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: 'lts/*'
+          node-version: "lts/*"
       - name: add semantic release plugins
         run: |
           npm install -D '@semantic-release/changelog' \
