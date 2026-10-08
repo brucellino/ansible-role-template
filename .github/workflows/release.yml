@@ -13,15 +13,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - name: Ansible Lint
-        uses: ansible-community/ansible-lint-action@v6.17.0
+          path: brucellino.template
+      - uses: jdx/mise-action@v5
         with:
-          path: test/playbook.yml
-        env:
-          ANSIBLE_ROLES_PATH: "${PWD}/../"
+          version: 2026.10.3 # [default: latest] mise version to install
+          install: true # [default: true] run `mise install`
+          cache: true # [default: true] cache mise using GitHub's cache
+          experimental: true # [default: false] enable experimental features
+          log_level: debug # [default: info] log level
+          reshim: true
+          env: true # [default: true] export mise environment variables
+          export_path: true # [default: true] add mise PATH entries to subsequent steps
+          github_token: ${{ secrets.GITHUB_TOKEN }} # [default: ${{ github.token }}] GitHub token for API authentication
+      - name: Add dependencies
+        run: mise tasks run install_deps
+      - name: Lint
+        run: ansible-lint .
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -29,18 +39,17 @@ jobs:
       - lint
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 'lts/*'
       - name: add semantic release plugins
         run: |
           npm install -D '@semantic-release/changelog' \
                           '@semantic-release/git'
-
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
