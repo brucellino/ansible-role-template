@@ -1,0 +1,10 @@
+[env]
+_.python.venv = { path = ".venv", create = true }
+
+[tools]
+python = "3.14"
+uv = "latest"
+prek = "0.5.5"
+
+[tasks]
+install_deps = "uv pip install ansible ansible-lint"
